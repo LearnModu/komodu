@@ -17,6 +17,6 @@ async function addSite(e) {
 	if (data.success) {
 		location.reload();
 	} else {
-		alert('Error: ' + data.error)1;
+		alert('Error: ' + data.error);
 	}
 }
