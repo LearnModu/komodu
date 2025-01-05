@@ -34,10 +34,11 @@
 			&lt;script&gt;
 				window.komoduConfig = {
 					site: 'your-site-id',
+                    postId: 'unique-post-id', // you make it yourself!
 					theme: 'light'
 				};
 			&lt;/script&gt;
-			&lt;script src="https://cdn.komodu.tech/embed.js"&gt;&lt;/script&gt;
+			&lt;script src="https://komodu.tech/static/embed.js"&gt;&lt;/script&gt;
 			</code></pre>
 		</div>
 	</section>

@@ -7,14 +7,16 @@ function showDemo() {
 }
 
 function copySnippet(siteId = "your-site-id") {
-	const snippet = `<div id="komodu-comments"></div>
-	<script>
+	const snippet = `&lt;div id="komodu-comments"&gt;&lt;/div&gt;
+			
+	&lt;script&gt;
 		window.komoduConfig = {
-			site: '${siteId}',
+			site: 'your-site-id',
+			postId: 'unique-post-id', // you make it yourself!
 			theme: 'light'
 		};
-	</script>
-	<script src="https://cdn.komodu.tech/embed.js"></script>`;
+	&lt;/script&gt;
+	&lt;script src="https://cdn.komodu.tech/embed.js"&gt;&lt;/script&gt;`;
 
 	navigator.clipboard.writeText(snippet);
 	alert("code copied!");

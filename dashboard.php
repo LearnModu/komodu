@@ -65,16 +65,50 @@ $comments = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 			<?php foreach($sites as $site): ?>
 			<div class="site-card">
 				<h3><?php echo htmlspecialchars($site['site_url']); ?></h3>
-				<p>Embed Code: <code><?php echo htmlspecialchars($site['embed_code']); ?></code></p>
+				<p>Embed Code: <code><?php echo htmlspecialchars(string: $site['embed_code']); ?></code></p>
+				<select onchange="updateTheme('<?php echo $site['embed_code']; ?>', this.value)">
+					<option value="light" <?php echo $site['theme'] === 'light' ? 'selected' : ''; ?>>Light</option>
+					<option value="dark" <?php echo $site['theme'] === 'dark' ? 'selected' : ''; ?>>Dark</option>
+					<?php
+					$themes = $conn->query("SELECT id, name FROM themes WHERE user_id = " . $_SESSION['user_id']);
+					while ($theme = $themes->fetch_assoc()):
+					?>
+					<option value="custom_<?php echo $theme['id']; ?>" 
+						<?php echo $site['theme'] === 'custom_'.$theme['id'] ? 'selected' : ''; ?>>
+						<?php echo htmlspecialchars($theme['name']); ?>
+					</option>
+					<?php endwhile; ?>
+				</select>
 				<button onclick="copySnippet('<?php echo $site['embed_code']; ?>')" class="sec">Copy Code</button>
-				<hr style="margin: 10px 0;">
-				<small>Created: <?php echo date('M j, Y', strtotime($site['created_at'])); ?></small>
 			</div>
 			<?php endforeach; ?>
 		</div>
+
+		<div id="themeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5);">
+			<div style="background: white; padding: 20px; border-radius: 10px; max-width: 600px; width: 100%; margin: 50px auto;">
+				<h2>Create Custom Theme</h2>
+				<form onsubmit="createTheme(event)">
+					<div class="form-group">
+						<label>Theme Name</label>
+						<input type="text" name="name" required>
+					</div>
+					<div class="form-group">
+						<label>Custom CSS</label>
+						<textarea name="css" required rows="10" style="width: 100%; font-family: monospace;">.komodu-comments {
+							/* Your custom CSS here */
+							--bg-color: #fff;
+							--text-color: #333;
+							--border-color: #ddd;
+						}</textarea>
+					</div>
+					<button type="submit" class="prim">Save Theme</button>
+					<button type="button" class="sec" onclick="hideThemeModal()">Cancel</button>
+				</form>
+			</div>
+		</div>
 	</div>
 
-	<div id="addSiteModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center;">
+	<div id="addSiteModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center;">
 		<div style="background: white; padding: 20px; border-radius: 10px; max-width: 400px; width: 100%;">
 			<h2>Add New Site</h2>
 			<form onsubmit="addSite(event)">
