@@ -1,0 +1,14 @@
+.comment {
+	padding: 10px;
+	border-bottom: 1px solid #eee;
+	margin: 10px 0;
+}
+
+.comment-form {
+	margin: 20px 0;
+}
+
+.vote-btns {
+	display: flex;
+	gap: 10px;
+}
