@@ -1,14 +1,61 @@
-.comment {
-	padding: 10px;
-	border-bottom: 1px solid #eee;
-	margin: 10px 0;
+body {
+	padding: 20px;
+	font-family: system-ui, -apple-system, sans-serif;
 }
 
 .comment-form {
-	margin: 20px 0;
+	margin-bottom: 30px;
+}
+
+.comment-form form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+input, textarea {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+textarea {
+	min-height: 100px;
+	resize: vertical;
+}
+
+button {
+	padding: 10px 20px;
+	background: #FF5B32;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.comment {
+	padding: 15px;
+	border: 1px solid #eee;
+	border-radius: 8px;
+	margin-bottom: 15px;
+}
+
+.comment h4 {
+	margin: 0 0 10px 0;
+	color: #333;
 }
 
 .vote-btns {
 	display: flex;
 	gap: 10px;
+	margin-top: 10px;
+}
+
+.vote-btns button {
+	padding: 5px 10px;
+	background: #f5f5f5;
+	color: #333;
 }

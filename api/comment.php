@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	$content = filter_var($_POST["content"], FILTER_SANITIZE_STRING);
 	$site_code = $_POST["site_code"];
 
-	$site_check = $conn->prepare("SELECT id FROM sites WHERE embed_code = ?");
+	$site_check = $conn->prepare("select id from sites where embed_code = ?");
 	$site_check->bind_param("s", $site_code);
 	$site_check->execute();
 	if (!$site_check->get_result()->num_rows) die(json_encode(['success' => false, 'error' => 'Invalid site code']));
