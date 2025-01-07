@@ -22,7 +22,7 @@ if (strpos($theme, "custom_") === 0) {
 	$result = $stmt->get_result();
 	if ($themeData = $result->fetch_assoc()) $custom_css = $themeData["css"];
 }
-
+ 
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +68,7 @@ if (strpos($theme, "custom_") === 0) {
 		echo '<h4>' . htmlspecialchars($comment['author_name']) . '</h4>';
 		echo '<p>' . htmlspecialchars($comment['content']) . '</p>';
 		echo '<div class="vote-btns">';
-		echo '<button onclick="vote(' . $comment['id'] . ', 1)">↑ ' . ($comment['upvotes'] ?? 0) . '</button>';
+		echo '<button onclick="vote(' . $comment['id'] . ', 1)">↑ <span id="vote-count-' . $comment['id'] . '">' . ($comment['upvotes'] ?? 0) . '</span></button>';
 		echo '<button onclick="vote(' . $comment['id'] . ', -1)">↓ ' . ($comment['downvotes'] ?? 0) . '</button>';
 		echo '</div></div>';
 	}

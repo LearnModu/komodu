@@ -7,7 +7,7 @@ async function vote(commentId, value) {
 			},
 			body: JSON.stringify([commentId, value]),
 		});
-		const data = response.json();
+		const data = await response.json();
 		if (data.success) location.reload();
 		else throw new Error(data.error | "Vote failed");
 	} catch (err) {
