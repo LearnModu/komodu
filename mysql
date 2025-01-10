@@ -1,1 +1,0 @@
-ALTER TABLE sites ADD COLUMN theme VARCHAR(50) DEFAULT 'light'; -u root -p komodu

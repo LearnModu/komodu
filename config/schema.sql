@@ -12,6 +12,7 @@ create table if not exists users (
 create table if not exists comments (
     id int primary key auto_increment,
     site_code varchar(50) not null,
+    post_id varchar(255) default null,
     author_name varchar(150) not null,
     content text not null,
     upvotes int default 0,

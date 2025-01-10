@@ -20,6 +20,10 @@ document.getElementById("commentForm").onsubmit = async (e) => {
 	e.preventDefault();
 	const form = e.target;
 	const formData = new FormData(form);
+	const urlParams = new URLSearchParams(window.location.search);
+	const postId = urlParams.get('postId');
+
+	formData.append('post_id', postId);
 	
 	try {
 		console.log("Submitting comment...");
@@ -42,6 +46,8 @@ document.getElementById("commentForm").onsubmit = async (e) => {
 			} else {
 				throw new Error(data.error || "Error posting comment!");
 			}
+
+			console.log("FormData: ", formData);
 		} catch (parseError) {
 			console.error("Parse error:", parseError);
 			console.log("Raw response was:", text);
